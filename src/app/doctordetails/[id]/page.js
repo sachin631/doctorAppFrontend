@@ -56,29 +56,34 @@ const page = ({ params }) => {
     try {
       event.preventDefault();
       dispatch(showLoading());
-      const res = await axios.post(
-        `${Base_url}/booking`,
-        {
-          userId: user._id,
-          userInfo: user,
-          doctorId: params.id,
-          doctorInfo: doctorData,
-          time: time,
-          date: date,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+      if (typeof window !== "undefined" && window.localStorage) {
+
+        const res = await axios.post(
+          `${Base_url}/booking`,
+          {
+            userId: user._id,
+            userInfo: user,
+            doctorId: params.id,
+            doctorInfo: doctorData,
+            time: time,
+            date: date,
           },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        dispatch(hideLoading());
+        if(res.data.success){
+          toast.success("request submited successfully");
+        }else{
+          toast.error("please try again")
         }
-      );
-      dispatch(hideLoading());
-      if(res.data.success){
-        toast.success("request submited successfully");
-      }else{
-        toast.error("please try again")
+        // console.log(res, "book now button");
+
       }
-      // console.log(res, "book now button");
+      
     } catch (error) {
       toast.error(error.response.data.error)
       // console.log(error)

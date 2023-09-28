@@ -4,11 +4,18 @@ import { useRouter } from 'next/navigation';
 
 const HomeProtect = ({children}) => {
     const router=useRouter()
-    if(localStorage.getItem("token")){
-        return children
-    }else{
-        router.push("/login"); 
+    if (typeof window !== "undefined" && window.localStorage) {
+
+
+       
+        if(localStorage.getItem("token")){
+            return children
+        }else{
+            router.push("/login"); 
+        }
+
     }
+  
  
 }
 
