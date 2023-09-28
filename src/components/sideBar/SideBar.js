@@ -18,7 +18,7 @@ const SideBar = () => {
   const currentPath = usePathname();
   const router = useRouter();
   const { user } = useSelector((state) => state.userSlice);
-  console.log(user, "userDataatSidebar");
+  // console.log(user, "userDataatSidebar");
 
   return (
     <div className="flex flex-col gap-6 pt-8 px-4 pb-8 bg-[#411111] md:w-[17%] w-[30%] h-[100vh] fixed ">

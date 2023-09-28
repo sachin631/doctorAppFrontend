@@ -11,7 +11,7 @@ const Appoinmtnets = () => {
   const [appointmentData, setAppointmentData] = useState();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.userSlice);
-  console.log(user, "userSlice data at user appointment page");
+  // console.log(user, "userSlice data at user appointment page");
   const findParticularUserAppontment = async () => {
     dispatch(showLoading());
     const res = await axios.get(`${Base_url}/doctorAppointmentsController`, {
@@ -23,7 +23,7 @@ const Appoinmtnets = () => {
     if (res?.data?.success) {
       setAppointmentData(res?.data?.data);
     }
-    console.log(res?.data, "doctorppoin");
+    // console.log(res?.data, "doctorppoin");
   };
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const Appoinmtnets = () => {
       }
     );
     dispatch(hideLoading());
-    console.log(res,"appointment approved or not")
+    // console.log(res,"appointment approved or not")
   };
   return (
     <>

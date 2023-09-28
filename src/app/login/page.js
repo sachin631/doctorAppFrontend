@@ -24,13 +24,13 @@ const login = () => {
       [name]: value,
     });
   };
-  console.log(form, "form is ");
+  // console.log(form, "form is ");
   const submitButton = async (event) => {
     event.preventDefault();
 
     try {
       const { email, passWord } = form;
-      console.log(email, passWord);
+      // console.log(email, passWord);
       // const data=new FormData();
       // data.append("email",email);
       // data.append("passWord",passWord);
@@ -43,7 +43,7 @@ const login = () => {
       let res = await axios.post(`${Base_url}/loginUser`, requestData);
       window.location.reload();
       dispatch(hideLoading());
-      console.log("res1", res.data);
+      // console.log("res1", res.data);
       if (res.status === 200 && res.data.success) {
         localStorage.setItem("token", res.data.token);
         toast.success("login Successfully!");
@@ -55,7 +55,7 @@ const login = () => {
       }
     } catch (error) {
       dispatch(hideLoading());
-      console.error(error);
+      // console.error(error);
 toast.error("try again")
       toast.error(error.response.data.message);
     }

@@ -29,7 +29,7 @@ const NavBar = () => {
           },
         }
       );
-      console.log(res.data);
+      // console.log(res.data);
       dispatch(hideLoading());
       if (res.data.success) {
         dispatch(getUser(res.data.user));
@@ -37,7 +37,7 @@ const NavBar = () => {
     } catch (error) {
       dispatch(hideLoading());
       localStorage.clear();
-      console.log(error);
+      // console.log(error);
     }
   };
 

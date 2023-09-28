@@ -54,7 +54,7 @@ const Notification = () => {
 
   const [value, setValue] = React.useState(0);
   const {user}=useSelector((state)=>state.userSlice);
-  console.log("user at read message admin",user?.notification)
+  // console.log("user at read message admin",user?.notification)
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -76,7 +76,7 @@ const Notification = () => {
     }catch(error){
       dispatch(hideLoading());
         toast.error(error?.response?.data?.message)
-        console.log(error);
+        // console.log(error);
 
     }
   };
@@ -101,7 +101,7 @@ const Notification = () => {
     }catch(error){
         hideLoading();
         toast.error(error?.response?.data?.message)
-        console.log(error);
+        // console.log(error);
 
     }
 

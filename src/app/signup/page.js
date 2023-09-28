@@ -22,7 +22,7 @@ const signup = () => {
       [name]: value,
     });
   };
-  console.log("formdata", formData);
+  // console.log("formdata", formData);
   const onsubmit = async (event) => {
     event.preventDefault();
     
@@ -40,7 +40,7 @@ const signup = () => {
         toast.error(res.data.message);
       }
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       dispatch(hideLoading());
       toast.error(error.response?.data?.message)
     }

@@ -23,11 +23,11 @@ const page = () => {
     });
   };
 
-  console.log(form, "doctordata apply doctor page");
+  // console.log(form, "doctordata apply doctor page");
   //onsubmit button
   const onsubmit = async (event) => {
     event.preventDefault();
-    console.log("submit");
+    // console.log("submit");
     try {
       const {
         website,
@@ -73,7 +73,7 @@ const page = () => {
     } catch (error) {
       dispatch(hideLoading());
       toast.error(error.response.data.message);
-      console.log(error);
+      // console.log(error);
     }
   };
   return (

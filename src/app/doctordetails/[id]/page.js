@@ -15,7 +15,7 @@ const page = ({ params }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (doctorData) {
-      console.log(doctorData, "doctor data is now available");
+      // console.log(doctorData, "doctor data is now available");
     }
   }, [doctorData]); // This will run whenever doctorData changes
   const getParticularDoctorDetails = async () => {
@@ -30,10 +30,10 @@ const page = ({ params }) => {
           },
         }
       );
-      console.log(
-        res,
-        "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
-      );
+      // console.log(
+      //   res,
+      //   "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
+      // );
       dispatch(hideLoading());
 
       if (res?.data?.success) {
@@ -44,7 +44,7 @@ const page = ({ params }) => {
       }
       dispatch(hideLoading());
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
   useEffect(() => {
@@ -78,10 +78,10 @@ const page = ({ params }) => {
       }else{
         toast.error("please try again")
       }
-      console.log(res, "book now button");
+      // console.log(res, "book now button");
     } catch (error) {
       toast.error(error.response.data.error)
-      console.log(error)
+      // console.log(error)
     }
   };
   return (

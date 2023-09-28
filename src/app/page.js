@@ -51,7 +51,7 @@ export default function Home() {
         toast.error("something wrong data not fetched properly");
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast.error(error?.response?.data?.message);
     }
   };
@@ -59,7 +59,7 @@ export default function Home() {
   useEffect(() => {
     getAllDoctors();
   }, []);
-  console.log(doctor, "doctor doctor docotro docotr cod tor");
+  // console.log(doctor, "doctor doctor docotro docotr cod tor");
   return (
     <>
       <div className="flex gap-4">

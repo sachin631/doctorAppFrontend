@@ -11,7 +11,7 @@ const Appoinmtnets = () => {
   const [appointmentData,setAppointmentData]=useState();
   const dispatch = useDispatch();
   const {user}=useSelector((state)=>state.userSlice);
-  console.log(user,"userSlice data at user appointment page");
+  // console.log(user,"userSlice data at user appointment page");
   const findParticularUserAppontment = async () => {
     dispatch(showLoading());
     const res = await axios.get(
@@ -26,7 +26,7 @@ const Appoinmtnets = () => {
     if(res?.data?.success){
       setAppointmentData(res?.data?.userAppontment)
     }
-    console.log(res?.data,"dat of appoin")
+    // console.log(res?.data,"dat of appoin")
   };
  
  
@@ -46,7 +46,7 @@ const Appoinmtnets = () => {
         }
       });
       dispatch(hideLoading());
-      console.log(res);
+      // console.log(res);
       if(res.data.success){
         toast.success("Appointent deleted Successfully");
         window.location.reload();
@@ -55,7 +55,7 @@ const Appoinmtnets = () => {
      
 
     }catch(error){
-      console.log(error);
+      // console.log(error);
     }
 
 

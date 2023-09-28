@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Doctors = () => {
   const [userData, setUserData] = useState();
-  console.log("userdata of the statae", userData);
+  // console.log("userdata of the statae", userData);
   const dispatch = useDispatch();
 
   const getAllUser = async () => {
@@ -19,11 +19,12 @@ const Doctors = () => {
       dispatch(showLoading());
       const res = await axios.get(`${Base_url}/getAllDoctors`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,// 9812660802 mandeep
+          Authorization: `Bearer ${typeof window!=="undefined"? localStorage?.getItem("token"):""}`,// 9812660802 mandeep
         },
       });
+    
       dispatch(hideLoading);
-      console.log(res.data, "admin ka user ki table ka data");
+      // console.log(res.data, "admin ka user ki table ka data");
       if (res.data.success) {
         // toast.success("congratulations data get properly");
         setUserData(res.data.docotrs);
@@ -33,7 +34,7 @@ const Doctors = () => {
     } catch (error) {
       dispatch(hideLoading);
       toast.error(error?.response?.data?.message);
-      console.log(error);
+      // console.log(error);
     }
   };
   useEffect(() => {
@@ -46,11 +47,11 @@ const Doctors = () => {
     dispatch(showLoading());
     const res = await axios.post(`${Base_url}/changeDoctorStatus`,{doctorId:curelem._id,userId: curelem.userId,status:status}, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,// 9812660802 mandeep
+        Authorization: `Bearer ${typeof window!=="undefined"? localStorage?.getItem("token"):""}`,// 9812660802 mandeep
       },
     });
     dispatch(hideLoading);
-    console.log(res.data, "admin ka user ki table ka data");
+    // console.log(res.data, "admin ka user ki table ka data");
     if (res.data.success) {
       toast.success("congratulations Task Done");
       window.location.reload();
@@ -62,7 +63,7 @@ const Doctors = () => {
   } catch (error) {
       dispatch(hideLoading);
       toast.error(error?.response?.data?.message);
-      console.log(error);
+      // console.log(error);
     }
  }
 

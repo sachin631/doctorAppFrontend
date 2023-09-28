@@ -60,8 +60,8 @@ const page = () => {
   const [doctorData, setDoctorData] = useState();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.userSlice);
-  console.log(user, "user at profile page");
-  console.log(doctorData);
+  // console.log(user, "user at profile page");
+  // console.log(doctorData);
   const onchange = (event) => {
     const { name, value } = event.target;
     setDoctorData({
@@ -90,11 +90,11 @@ const page = () => {
         toast.error("something went wrong try again");
       }
 
-      console.log(res.data.doctor, "response at profile of the doctor of api");
+      // console.log(res.data.doctor, "response at profile of the doctor of api");
     } catch (error) {
       dispatch(hideLoading());
       toast.error(error.response.data.message);
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -106,7 +106,7 @@ const page = () => {
 
   const onsubmit = async (event) => {
     event.preventDefault();
-    console.log("submit");
+    // console.log("submit");
     try {
       const {
         website,
@@ -159,7 +159,7 @@ const page = () => {
     } catch (error) {
       dispatch(hideLoading());
       toast.error(error?.response?.data?.message);
-      console.log(error);
+      // console.log(error);
     }
   };
 

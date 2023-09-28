@@ -13,7 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 // getAllUser //main copmponent
 const Users = () => {
   const [userData, setUserData] = useState();
-  console.log("userdata of the statae", userData);
+  // console.log("userdata of the statae", userData);
   const dispatch = useDispatch();
 
   const getAllUser = async () => {
@@ -25,7 +25,7 @@ const Users = () => {
         },
       });
       dispatch(hideLoading);
-      console.log(res.data, "admin ka user ki table ka data");
+      // console.log(res.data, "admin ka user ki table ka data");
       if (res.data.success) {
         // toast.success("congratulations data get properly");
         setUserData(res.data.user);
@@ -35,7 +35,7 @@ const Users = () => {
     } catch (error) {
       dispatch(hideLoading);
       toast.error(error?.response?.data?.message);
-      console.log(error);
+      // console.log(error);
     }
   };
   useEffect(() => {
@@ -52,7 +52,7 @@ const Users = () => {
         }
       });
       dispatch(hideLoading());
-      console.log(res);
+      // console.log(res);
       if(res.data.success){
         toast.success("user deleted Successfully");
       }
@@ -60,7 +60,7 @@ const Users = () => {
      
 
     }catch(error){
-      console.log(error);
+      // console.log(error);
     }
   }
   return (
