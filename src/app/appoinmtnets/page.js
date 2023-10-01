@@ -57,19 +57,20 @@ const Appoinmtnets = () => {
      
 
     }catch(error){
+      toast.error("error")
       // console.log(error);
     }
 
 
 
   }
-  if (loading) {
-    return (
-      <div className="h-[100vh] flex justify-center items-center bg-black">
-        <Loader />
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="h-[100vh] flex justify-center items-center bg-black">
+  //       <Loader />
+  //     </div>
+  //   );
+  // }
   return (
     <>
       <div className="flex gap-2">
