@@ -34,8 +34,7 @@ const Appoinmtnets = () => {
 
   //updateStatusController
   const handleApproved = async (status, appointmentsId) => {
-    try{
-
+    try {
       dispatch(showLoading());
       const res = await axios.post(
         `${Base_url}/updateStatusController`,
@@ -47,16 +46,15 @@ const Appoinmtnets = () => {
         }
       );
       dispatch(hideLoading());
-      if(res.data.success){
+      if (res?.data?.success) {
         toast.success("updated successfully");
         window.location.reload();
       }
-      
-    }catch(error){
-toast.error("error");
+    } catch (error) {
+      toast.error("error");
     }
-  }
-  
+  };
+
   // if (loading) {
   //   return (
   //     <div className="h-[100vh] flex justify-center items-center bg-black">
@@ -100,8 +98,9 @@ toast.error("error");
                       >
                         Approved
                       </button>
-                      <button className="bg-red-500 px-2 py-2 rounded text-white"
-                       onClick={() => handleApproved("rejected ", curelem._id)}
+                      <button
+                        className="bg-red-500 px-2 py-2 rounded text-white"
+                        onClick={() => handleApproved("rejected ", curelem._id)}
                       >
                         Reject
                       </button>

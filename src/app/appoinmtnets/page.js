@@ -49,7 +49,7 @@ const Appoinmtnets = () => {
       });
       dispatch(hideLoading());
       // console.log(res);
-      if(res.data.success){
+      if(res?.data?.success){
         toast.success("Appointent deleted Successfully");
         window.location.reload();
       }
