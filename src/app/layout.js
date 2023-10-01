@@ -3,6 +3,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import NavBar from "@/components/Navbar.js/NavBar";
 import RTKWrapProvider from "@/RTK/provider";
+import Footer from "@/components/Footer/Footer";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -24,7 +25,7 @@ export default function RootLayout({ children }) {
            
               <NavBar />
               {children}
-              
+              <Footer/>
            
           </RTKWrapProvider>
         </div>
