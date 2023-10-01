@@ -6,7 +6,7 @@ import { Base_url } from "@/helper";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 
 const Appoinmtnets = () => {
   const [appointmentData, setAppointmentData] = useState();
@@ -45,6 +45,10 @@ const Appoinmtnets = () => {
       }
     );
     dispatch(hideLoading());
+    if(res.data.success){
+      toast.success("updated successfully");
+      window.location.reload();
+    }
     // console.log(res,"appointment approved or not")
   };
   // if (loading) {
