@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 import NavBar from "@/components/Navbar.js/NavBar";
 import RTKWrapProvider from "@/RTK/provider";
 import Footer from "@/components/Footer/Footer";
-import _JSXStyle from 'styled-jsx/style'
+
 
 
 const inter = Inter({ subsets: ["latin"] });
