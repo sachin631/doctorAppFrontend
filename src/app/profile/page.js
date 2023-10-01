@@ -1,5 +1,6 @@
 "use client";
 import { hideLoading, showLoading } from "@/RTK/features/alertSlice";
+import Loader from "@/components/loader/Loader";
 import SideBar from "@/components/sideBar/SideBar";
 import { Base_url } from "@/helper";
 import axios from "axios";
@@ -60,6 +61,7 @@ const page = () => {
   const [doctorData, setDoctorData] = useState();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.userSlice);
+  const { loading } = useSelector((state) => state.alertSlice);
   // console.log(user, "user at profile page");
   // console.log(doctorData);
   const onchange = (event) => {
@@ -163,10 +165,17 @@ const page = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="h-[100vh] flex justify-center items-center bg-black">
+        <Loader />
+      </div>
+    );
+  }
   return (
     <div className="flex gap-2">
       <SideBar />
-      <div className="mt-16 md:ml-[19%] ml-[33%] px-3 md:text-base text-sm w-[100%] pr-2 border-solid border-[1px] py-3 mr-3">
+      <div className="md:text-sm text-xs mt-16 md:ml-[19%] ml-[33%] px-3  w-[100%] pr-2 border-solid border-[1px] py-3 mr-3">
         <div>
           <div className="font-bold">Manage Profile</div>
           <div className="flex flex-col gap-4">

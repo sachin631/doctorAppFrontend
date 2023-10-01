@@ -224,7 +224,7 @@ const SideBar = () => {
                     currentPath == "/appoinmtnets" ? "text-black" : "text-white"
                   }`}
                 >
-                  Appoinmtnets
+                  Appoint.
                 </div>
               </div>
             </Link>
@@ -251,7 +251,7 @@ const SideBar = () => {
                     currentPath == "/applydoctor" ? "text-black" : "text-white"
                   }`}
                 >
-                  Apply Doctor
+                  ApplyDoctor
                 </div>
               </div>
             </Link>

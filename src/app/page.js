@@ -62,9 +62,9 @@ export default function Home() {
   // console.log(doctor, "doctor doctor docotro docotr cod tor");
   return (
     <>
-      <div className="flex gap-4">
+      <div className="flex gap-4 md:text-sm text-xs">
         <SideBar />
-        <div className="mt-16 grid gap-7 mr-3 md:grid-cols-4 grid-cols-1 md:ml-[19%] ml-[43%] md:text-base text-sm">
+        <div className="md:text-sm text-xs  mt-16 grid gap-7 mr-3 md:grid-cols-4 grid-cols-1 md:ml-[19%] ml-[43%] ">
           {doctor?.map((curelem, index) => {
             return (
               <div className="flex flex-col  rounded  border-[1px] border-solid border-black cursor-pointer " onClick={()=>{

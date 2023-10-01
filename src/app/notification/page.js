@@ -13,6 +13,7 @@ import axios from "axios";
 import { Base_url } from "@/helper";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loader from "@/components/loader/Loader";
 //mui component main compo is below
 function CustomTabPanel(props) {
 
@@ -54,6 +55,7 @@ const Notification = () => {
 
   const [value, setValue] = React.useState(0);
   const {user}=useSelector((state)=>state.userSlice);
+  const { loading } = useSelector((state) => state.alertSlice);
   // console.log("user at read message admin",user?.notification)
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -106,13 +108,20 @@ const Notification = () => {
     }
 
   }
+  if (loading) {
+    return (
+      <div className="h-[100vh] flex justify-center items-center bg-black">
+        <Loader />
+      </div>
+    );
+  }
   return (
     <>
       <div className="flex gap-2">
         <div>
           <SideBar />
         </div>
-        <div className="mt-16 md:ml-[19%] ml-[43%] px-3 md:text-base text-sm w-[100%] pr-2">
+        <div className="md:text-sm text-xs mt-16 md:ml-[19%] ml-[43%] px-3 w-[100%] pr-2">
           <h1 className="text-center font-bold">Notification Page</h1>
           <div className="">
             <Box sx={{ width: "100%" }}>

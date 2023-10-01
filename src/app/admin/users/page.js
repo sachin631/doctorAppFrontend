@@ -1,10 +1,11 @@
 "use client";
 import { hideLoading, showLoading } from "@/RTK/features/alertSlice";
+import Loader from "@/components/loader/Loader";
 import SideBar from "@/components/sideBar/SideBar";
 import { Base_url } from "@/helper";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,6 +16,7 @@ const Users = () => {
   const [userData, setUserData] = useState();
   // console.log("userdata of the statae", userData);
   const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.alertSlice);
 
   const getAllUser = async () => {
     try {
@@ -24,7 +26,7 @@ const Users = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      dispatch(hideLoading);
+      dispatch(hideLoading());
       // console.log(res.data, "admin ka user ki table ka data");
       if (res.data.success) {
         // toast.success("congratulations data get properly");
@@ -33,7 +35,7 @@ const Users = () => {
         toast.error(res.data.message);
       }
     } catch (error) {
-      dispatch(hideLoading);
+      dispatch(hideLoading());
       toast.error(error?.response?.data?.message);
       // console.log(error);
     }
@@ -54,14 +56,25 @@ const Users = () => {
       dispatch(hideLoading());
       // console.log(res);
       if(res.data.success){
+        
         toast.success("user deleted Successfully");
+        
       }
       window.location.reload();
      
 
     }catch(error){
-      // console.log(error);
+      dispatch(hideLoading());
+      toast.error("try again");
+      toast.error(error.response.data.message);
     }
+  }
+  if (loading) {
+    return (
+      <div className="h-[100vh] flex justify-center items-center bg-black">
+        <Loader />
+      </div>
+    );
   }
   return (
     <>
@@ -69,7 +82,7 @@ const Users = () => {
         <div className="">
           <SideBar className="w-" />
         </div>
-        <div className="mt-16 md:ml-[19%] ml-[33%] px-3 md:text-base text-sm w-[100%] pr-2">
+        <div className="md:text-sm text-xs mt-16 md:ml-[19%] ml-[33%] px-3  w-[100%] pr-2">
           <h1 className="font-bold">Users List for Admin</h1>
           {/* table start */}
           <div className="md:w-[100%] w-[270px] overflow-x-scroll">

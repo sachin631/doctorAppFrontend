@@ -1,5 +1,6 @@
 "use client";
 import { hideLoading, showLoading } from "@/RTK/features/alertSlice";
+import Loader from "@/components/loader/Loader";
 import SideBar from "@/components/sideBar/SideBar";
 import { Base_url } from "@/helper";
 import axios from "axios";
@@ -13,11 +14,12 @@ const page = ({ params }) => {
   const [date, setDate] = useState();
   const { user } = useSelector((state) => state.userSlice);
   const dispatch = useDispatch();
-  useEffect(() => {
-    if (doctorData) {
-      // console.log(doctorData, "doctor data is now available");
-    }
-  }, [doctorData]); // This will run whenever doctorData changes
+  const { loading } = useSelector((state) => state.alertSlice);
+  // useEffect(() => {
+  //   if (doctorData) {
+  //     console.log(doctorData, "doctor data is now available");
+  //   }
+  // }, [doctorData]); // This will run whenever doctorData changes
   const getParticularDoctorDetails = async () => {
     try {
       dispatch(showLoading());
@@ -30,10 +32,7 @@ const page = ({ params }) => {
           },
         }
       );
-      // console.log(
-      //   res,
-      //   "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
-      // );
+
       dispatch(hideLoading());
 
       if (res?.data?.success) {
@@ -47,9 +46,6 @@ const page = ({ params }) => {
       // console.log(error);
     }
   };
-  useEffect(() => {
-    getParticularDoctorDetails();
-  }, []);
 
   //bookNowHandle
   const bookNowHandle = async (event) => {
@@ -57,7 +53,6 @@ const page = ({ params }) => {
       event.preventDefault();
       dispatch(showLoading());
       if (typeof window !== "undefined" && window.localStorage) {
-
         const res = await axios.post(
           `${Base_url}/booking`,
           {
@@ -75,25 +70,35 @@ const page = ({ params }) => {
           }
         );
         dispatch(hideLoading());
-        if(res.data.success){
+        if (res.data.success) {
           toast.success("request submited successfully");
-        }else{
-          toast.error("please try again")
+        } else {
+          toast.error("please try again");
         }
         // console.log(res, "book now button");
-
       }
-      
     } catch (error) {
-      toast.error(error.response.data.error)
+      toast.error(error.response.data.error);
       // console.log(error)
     }
   };
+
+  useEffect(() => {
+    getParticularDoctorDetails();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="h-[100vh] flex justify-center items-center bg-black">
+        <Loader />
+      </div>
+    );
+  }
   return (
     <>
       <div className="flex gap-2">
         <SideBar />
-        <div className="mt-16 md:ml-[19%] ml-[43%] px-3 md:text-base text-sm w-[100%] pr-2 border-solid border-[1px] py-3 mr-8">
+        <div className="md:text-sm text-xs mt-16 md:ml-[19%] ml-[43%] px-3  w-[100%] pr-2 border-solid border-[1px] py-3 mr-8">
           <div className="font-bold text-center">Booking Page</div>
           <div>
             <div>

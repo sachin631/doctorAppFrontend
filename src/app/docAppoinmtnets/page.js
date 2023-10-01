@@ -1,5 +1,6 @@
 "use client";
 import { hideLoading, showLoading } from "@/RTK/features/alertSlice";
+import Loader from "@/components/loader/Loader";
 import SideBar from "@/components/sideBar/SideBar";
 import { Base_url } from "@/helper";
 import axios from "axios";
@@ -12,6 +13,7 @@ const Appoinmtnets = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.userSlice);
   // console.log(user, "userSlice data at user appointment page");
+  const { loading } = useSelector((state) => state.alertSlice);
   const findParticularUserAppontment = async () => {
     dispatch(showLoading());
     const res = await axios.get(`${Base_url}/doctorAppointmentsController`, {
@@ -45,13 +47,20 @@ const Appoinmtnets = () => {
     dispatch(hideLoading());
     // console.log(res,"appointment approved or not")
   };
+  if (loading) {
+    return (
+      <div className="h-[100vh] flex justify-center items-center bg-black">
+        <Loader />
+      </div>
+    );
+  }
   return (
     <>
       <div className="flex gap-2">
         <div className="">
           <SideBar className="w-" />
         </div>
-        <div className="mt-16 md:ml-[19%] ml-[33%] px-3 md:text-base text-sm w-[100%] pr-2">
+        <div className="md:text-sm text-xs mt-16 md:ml-[19%] ml-[33%] px-3  w-[100%] pr-2">
           <h1 className="font-bold">Doctor Appoinmtnets Lists </h1>
           {/* table start */}
           <div className="md:w-[100%] w-[270px] overflow-x-scroll">
