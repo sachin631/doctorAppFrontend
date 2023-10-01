@@ -67,7 +67,7 @@ export default function Home() {
         <div className="md:text-sm text-xs  mt-16 grid gap-7 mr-3 md:grid-cols-4 grid-cols-1 md:ml-[19%] ml-[43%] ">
           { doctor?.map((curelem, index) => {
             return ( 
-             curelem?.isDoctor && <div className="flex flex-col  rounded  border-[1px] border-solid border-black cursor-pointer " onClick={()=>{
+             curelem?.status=="approved" && <div className="flex flex-col  rounded  border-[1px] border-solid border-black cursor-pointer " onClick={()=>{
                 router.push(`/doctordetails/${curelem._id}`)
               }}>
                 <div className="bg-gray-200 rounded px-4 py-2">
