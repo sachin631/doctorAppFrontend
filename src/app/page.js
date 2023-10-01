@@ -65,9 +65,9 @@ export default function Home() {
       <div className="flex gap-4 md:text-sm text-xs">
         <SideBar />
         <div className="md:text-sm text-xs  mt-16 grid gap-7 mr-3 md:grid-cols-4 grid-cols-1 md:ml-[19%] ml-[43%] ">
-          {doctor?.isDoctor==true ?( doctor?.map((curelem, index) => {
-            return (
-              <div className="flex flex-col  rounded  border-[1px] border-solid border-black cursor-pointer " onClick={()=>{
+          { doctor?.map((curelem, index) => {
+            return ( 
+             curelem?.isDoctor && <div className="flex flex-col  rounded  border-[1px] border-solid border-black cursor-pointer " onClick={()=>{
                 router.push(`/doctordetails/${curelem._id}`)
               }}>
                 <div className="bg-gray-200 rounded px-4 py-2">
@@ -98,7 +98,7 @@ export default function Home() {
                 </div>
               </div>
             );
-          })):""}
+          })}
         </div>
       </div>
       <ToastContainer />
