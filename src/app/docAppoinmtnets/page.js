@@ -34,23 +34,29 @@ const Appoinmtnets = () => {
 
   //updateStatusController
   const handleApproved = async (status, appointmentsId) => {
-    dispatch(showLoading());
-    const res = await axios.post(
-      `${Base_url}/updateStatusController`,
-      { status: status, appointmentsId: appointmentsId },
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
+    try{
+
+      dispatch(showLoading());
+      const res = await axios.post(
+        `${Base_url}/updateStatusController`,
+        { status: status, appointmentsId: appointmentsId },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      dispatch(hideLoading());
+      if(res.data.success){
+        toast.success("updated successfully");
+        window.location.reload();
       }
-    );
-    dispatch(hideLoading());
-    if(res.data.success){
-      toast.success("updated successfully");
-      window.location.reload();
+      
+    }catch(error){
+toast.error("error");
     }
-    // console.log(res,"appointment approved or not")
-  };
+  }
+  
   // if (loading) {
   //   return (
   //     <div className="h-[100vh] flex justify-center items-center bg-black">

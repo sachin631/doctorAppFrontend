@@ -24,6 +24,7 @@ export default function RootLayout({ children }) {
            
               <NavBar />
               {children}
+              
            
           </RTKWrapProvider>
         </div>
